@@ -4,7 +4,7 @@ require_once 'db_init.php';
 $db = getDB();
 
 if (empty($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: login.html');
     exit;
 }
 
@@ -60,38 +60,26 @@ $rooms = $stmt->fetchAll();
 
 <body>
 
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo">Reserba Silid</div>
-            <button class="toggle-btn">&times;</button>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="dashboard.php" class="active">
-                    <i class="bi bi-house"></i> Dashboard
-                </a>
-            </li>
-
-            <li>
-                <a href="scheduler.php">
-                    <i class="bi bi-calendar-week"></i> Scheduler
-                </a>
-            </li>
-
-            <li>
-                <a href="manage_schedules.php">
-                    <i class="bi bi-pencil-square"></i> Edit Classes
-                </a>
-            </li>
-
-            <li>
-                <a href="settings.php">
-                    <i class="bi bi-gear"></i> Settings
-                </a>
-            </li>
-
-        </ul>
-    </nav>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">Reserba Silid</div>
+      <button class="toggle-btn">&times;</button>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard.php" class="active"><i class="bi bi-house"></i> Dashboard</a>
+      </li>
+      <li>
+        <a href="scheduler.php"><i class="bi bi-calendar-week"></i> Scheduler</a>
+      </li>
+      <li>
+        <a href="manage_schedules.php"><i class="bi bi-pencil-square"></i> Edit Classes</a>
+      </li>
+      <li>
+        <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
+      </li>
+    </ul>
+  </nav>
 
     <main class="main-content">
         <div class="mobile-header">
@@ -110,13 +98,13 @@ $rooms = $stmt->fetchAll();
             <div class="grid">
                 <?php foreach ($rooms as $r): ?>
                     <div class="card" style="<?= $r['event_title'] ? 'border-top: 5px solid #dc3545' : 'border-top: 5px solid #28a745' ?>">
-                        <h2 style="color: #333; margin:0 0 10px 0;"><?= htmlspecialchars($r['name'] ?? '') ?></h2>
+                        <h2 style="margin:0 0 10px 0;"><?= htmlspecialchars($r['name'] ?? '') ?></h2>
                         <?php if ($r['event_title']): ?>
                             <span class="status-badge occupied">Occupied</span>
                             <hr style="border:0; border-top:1px solid #eee; margin: 15px 0;">
                             <div style="text-align:left;">
-                                <strong style="display:block; color:#333;"><?= htmlspecialchars($r['event_title'] ?? '') ?></strong>
-                                <small>Instr. <?= htmlspecialchars($r['instructor'] ?? '') ?></small>
+                                <medium style="display:block; color:#6FFFE8;"><?= htmlspecialchars($r['event_title'] ?? '') ?></medium>
+                                <small style="color:#6FFFE8">Instr. <?= htmlspecialchars($r['instructor'] ?? '') ?></small>
                             </div>
                         <?php else: ?>
                             <span class="status-badge available">Available</span>
