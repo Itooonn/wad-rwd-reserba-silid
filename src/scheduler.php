@@ -76,29 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <ul class="nav-links">
       <li>
-        <a href="dashboard.php">
-          <i class="bi bi-house"></i> Dashboard
-        </a>
+        <a href="dashboard.php" ><i class="bi bi-house"></i> Dashboard</a>
       </li>
-
       <li>
-        <a href="scheduler.php" class="active">
-          <i class="bi bi-calendar-week"></i> Scheduler
-        </a>
+        <a href="scheduler.php" class="active"><i class="bi bi-calendar-week"></i> Scheduler</a>
       </li>
-
       <li>
-        <a href="manage_schedules.php">
-          <i class="bi bi-pencil-square"></i> Edit Classes
-        </a>
+        <a href="manage_schedules.php"><i class="bi bi-pencil-square"></i> Edit Classes</a>
       </li>
-
       <li>
-          <a href="settings.php">
-            <i class="bi bi-gear"></i> Settings
-          </a>
+        <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
       </li>
-
     </ul>
   </nav>
 
