@@ -1,16 +1,8 @@
-/* -------------------------------------------------
-   ROOT VARIABLES
-------------------------------------------------- */
 :root {
     --oxford-blue: #0B132A;
     --fluorescent-cyan: #6FFFE8;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(111, 255, 232, 0.2);
 }
 
-/* -------------------------------------------------
-   BASE LAYOUT
-------------------------------------------------- */
 body {
     background-color: var(--oxford-blue);
     min-height: 100vh;
@@ -22,9 +14,7 @@ main {
     flex: 1;
 }
 
-/* -------------------------------------------------
-   NAVBAR & LOGO
-------------------------------------------------- */
+/* Navbar */
 .navbar {
     border-bottom: 1px solid rgba(111, 255, 232, 0.2);
 }
@@ -32,7 +22,7 @@ main {
 .logo {
     font-family: 'Cinzel Decorative', cursive;
     font-size: 28px;
-    background: linear-gradient(135deg, var(--fluorescent-cyan) 0%, #fff 50%, var(--fluorescent-cyan) 100%);
+    background: linear-gradient(135deg, #6FFFE8 0%, #fff 50%, #6FFFE8 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -45,9 +35,7 @@ main {
     transform: translateY(-1px);
 }
 
-/* -------------------------------------------------
-   BUTTONS (Unified)
-------------------------------------------------- */
+/* Buttons */
 .btn-login,
 .btn-register {
     padding: 0.5rem 1rem;
@@ -62,11 +50,16 @@ main {
     font-size: 1.25rem;
 }
 
-/* LOGIN BUTTON */
 .btn-login {
     background-color: transparent;
     border-color: var(--fluorescent-cyan);
     color: var(--fluorescent-cyan);
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 255, 232, 0.3);
 }
 
 .btn-login:hover {
@@ -75,7 +68,6 @@ main {
     border-color: var(--fluorescent-cyan);
 }
 
-/* REGISTER BUTTON */
 .btn-register {
     background-color: var(--fluorescent-cyan);
     border-color: var(--fluorescent-cyan);
@@ -88,14 +80,6 @@ main {
     border-color: var(--fluorescent-cyan);
 }
 
-/* SHARED HOVER */
-.btn-login:hover,
-.btn-register:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(111, 255, 232, 0.3);
-}
-
-/* FOCUS + ACTIVE */
 .btn-login:focus-visible,
 .btn-register:focus-visible {
     outline: 2px solid var(--fluorescent-cyan);
@@ -107,9 +91,7 @@ main {
     transform: translateY(0);
 }
 
-/* -------------------------------------------------
-   HERO SECTION
-------------------------------------------------- */
+/* Hero Section */
 .hero-container {
     padding: 80px 0 60px;
 }
@@ -128,7 +110,7 @@ main {
 
 .hero-title-accent {
     font-size: clamp(2.5rem, 7vw, 3.75rem);
-    background: linear-gradient(135deg, var(--fluorescent-cyan) 0%, #fff 100%);
+    background: linear-gradient(135deg, #6FFFE8 0%, #fff 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -143,9 +125,7 @@ main {
     margin-bottom: 2rem;
 }
 
-/* -------------------------------------------------
-   FOOTER
-------------------------------------------------- */
+/* Footer */
 .footer {
     background-color: rgba(11, 19, 42, 0.9);
     border-top: 1px solid rgba(111, 255, 232, 0.1);
@@ -156,9 +136,10 @@ main {
 }
 
 /* -------------------------------------------------
-   GLASS CARD TEMPLATE (LOGIN / REGISTER)
+   LOGIN FORM STYLES
 ------------------------------------------------- */
-.auth-wrapper {
+
+.login-wrapper {
     min-height: 100vh;
     background: var(--oxford-blue);
     display: flex;
@@ -167,30 +148,26 @@ main {
     padding: 20px;
 }
 
-.auth-card {
+.login-card {
     width: 100%;
     max-width: 420px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(111, 255, 232, 0.2);
     border-radius: 12px;
     backdrop-filter: blur(8px);
     box-shadow: 0 0 25px rgba(111, 255, 232, 0.2);
 }
 
-.auth-title {
+.login-title {
     color: var(--fluorescent-cyan);
     text-shadow: 0 0 10px rgba(111, 255, 232, 0.5);
     letter-spacing: 1px;
 }
 
-/* -------------------------------------------------
-   FORM INPUTS (LOGIN + REGISTER)
-------------------------------------------------- */
 .universal-input {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(111, 255, 232, 0.3);
     color: white;
-    transition: all 0.25s ease;
 }
 
 .universal-input:focus {
@@ -198,24 +175,46 @@ main {
     box-shadow: 0 0 10px rgba(111, 255, 232, 0.4);
 }
 
-/* -------------------------------------------------
-   LINKS
-------------------------------------------------- */
-.login-link,
-.register-link {
+.login-link {
     color: var(--fluorescent-cyan);
     text-decoration: none;
-    transition: text-shadow 0.3s ease;
 }
 
-.login-link:hover,
-.register-link:hover {
+.login-link:hover {
     text-shadow: 0 0 8px rgba(111, 255, 232, 0.6);
 }
 
+
 /* -------------------------------------------------
-   ERROR BOX
+   REGISTER FORM STYLES (MATCH LOGIN)
 ------------------------------------------------- */
+
+.register-wrapper {
+    min-height: 100vh;
+    background: var(--oxford-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(111, 255, 232, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 25px rgba(111, 255, 232, 0.2);
+}
+
+.register-title {
+    color: var(--fluorescent-cyan);
+    text-shadow: 0 0 10px rgba(111, 255, 232, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Error box */
 .error-box {
     background: rgba(255, 0, 0, 0.12);
     border: 1px solid rgba(255, 0, 0, 0.4);
@@ -224,3 +223,14 @@ main {
     border-radius: 6px;
     color: #ff7b7b;
 }
+
+/* Link */
+.register-link {
+    color: var(--fluorescent-cyan);
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-shadow: 0 0 8px rgba(111, 255, 232, 0.6);
+}
+
