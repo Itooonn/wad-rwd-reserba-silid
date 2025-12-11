@@ -1,5 +1,5 @@
 /* -------------------------------------------------
-   GLOBAL / RESET
+   GLOBAL RESET
 ------------------------------------------------- */
 * {
     box-sizing: border-box;
@@ -9,42 +9,15 @@ body {
     color: #ffffff;
     margin: 0;
     padding: 0;
-    display: flex;          
+    display: flex;
     min-height: 100vh;
     height: 100%;
     overflow: hidden;
 }
 
 /* -------------------------------------------------
-   CARD & BOX COMPONENTS
+   SHARED GLASSMORPHIC PANEL (CARD / BOX)
 ------------------------------------------------- */
-/* .card {
-    background: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.card:hover {
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-} */
-
-
-/* .box {
-    border: 1px solid #e3e6f0;
-    padding: 20px;
-    border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    width: 100%;    
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 400px;
-    margin: 20px 0;
-} */
-
 .card, .box {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(111,255,232,0.15);
@@ -53,14 +26,15 @@ body {
     padding: 24px;
     box-shadow: 0 0 20px rgba(111,255,232,0.12);
     transition: transform 0.2s ease, box-shadow 0.3s ease;
-    width: 100%;    
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .card:hover, .box:hover {
     transform: translateY(-4px);
     box-shadow: 0 0 25px rgba(111,255,232,0.22);
 }
-
 
 /* -------------------------------------------------
    GRID LAYOUTS
@@ -81,12 +55,9 @@ body {
     width: 100%;
 }
 
-
 .schedule-grid-3col .full-row {
     grid-column: 1 / -1;
 }
-
-
 
 /* -------------------------------------------------
    MAIN CONTENT
@@ -95,38 +66,32 @@ body {
     flex-grow: 1;
     overflow-y: auto;
     height: 100vh;
-    background: var(--oxford-blue, #0B132A); /* unified theme color */
+    background: var(--oxford-blue, #0B132A);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
+    position: relative;
 }
 
+.main-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(111,255,232,0.08), transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(111,255,232,0.06), transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
 
 .mobile-header {
-    display: none; /* hidden by default on desktop */
+    display: none;
     width: 100%;
-    /* box-sizing: border-box; */
 }
 
 /* -------------------------------------------------
    STATUS BADGES
 ------------------------------------------------- */
-/* .status-badge,
-.available,
-.occupied {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.75em;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: white;
-}
-
-.available { background-color: #28a745; }
-.occupied { background-color: #dc3545; } */
-
 .status-badge,
 .available,
 .occupied {
@@ -146,71 +111,8 @@ body {
     backdrop-filter: blur(4px);
 }
 
-
 /* -------------------------------------------------
-   FORMS & INPUTS
-------------------------------------------------- */
-select {
-    width: 100%;
-    padding: 12px 14px;
-
-    /* Text */
-    color: #e9fefb;  /* soft white-cyan */
-
-    /* Background (select box) */
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(6px);
-
-    /* Border */
-    border: 1px solid rgba(111,255,232,0.3);
-    border-radius: 10px;
-
-    /* Smooth transition */
-    transition: 0.25s ease;
-
-    /* Remove default arrow */
-    appearance: none;
-    -webkit-appearance: none;
-
-    /* Custom neon arrow */
-    background-image:
-        linear-gradient(45deg, transparent 50%, #6FFFE8 50%),
-        linear-gradient(135deg, #6FFFE8 50%, transparent 50%),
-        linear-gradient(to right, #6FFFE8, #6FFFE8);
-
-    background-position:
-        calc(100% - 18px) calc(50% - 4px),
-        calc(100% - 13px) calc(50% - 4px),
-        calc(100% - 28px) 50%;
-
-    background-size: 5px 5px, 5px 5px, 1px 20px;
-    background-repeat: no-repeat;
-}
-
-/* Hover Glow */
-select:hover, input:hover, textarea:hover {
-    border-color: #6FFFE8;
-    box-shadow: 0 0 10px rgba(111,255,232,0.25);
-}
-
-/* Focus Glow */
-select:focus {
-    border-color: #6FFFE8;
-    box-shadow: 0 0 12px rgba(111,255,232,0.45);
-    outline: none;
-    background: rgba(255,255,255,0.08);
-}
-
-/* Dropdown Menu Colors (Firefox) */
-select option{
-    background: #0B132A;
-    color: #e9fefb;
-}
-
-
-
-/* -------------------------------------------------
-   MODERN GLASS INPUTS
+   FORMS & INPUTS (Unified)
 ------------------------------------------------- */
 input,
 select,
@@ -218,29 +120,27 @@ textarea {
     width: 100%;
     padding: 12px 14px;
     font-size: 0.95rem;
-
-    /* Glass effect */
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(111,255,232,0.25);
     border-radius: 10px;
     backdrop-filter: blur(6px);
-
-    /* Text colors */
     color: #e9fefb;
-
-    /* Spacing */
     margin-bottom: 12px;
-
-    /* Smooth transition */
     transition: all 0.25s ease;
 }
 
+/* PLACEHOLDERS */
 input::placeholder,
 textarea::placeholder {
     color: rgba(255, 255, 255, 0.45);
 }
 
-/* Focus State: Cyan Glow */
+/* INPUT HOVER / FOCUS */
+input:hover, select:hover, textarea:hover {
+    border-color: #6FFFE8;
+    box-shadow: 0 0 10px rgba(111,255,232,0.25);
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -251,34 +151,40 @@ textarea:focus {
     transform: translateY(-1px);
 }
 
-/* Disabled Styling */
-/* input:disabled,
-select:disabled,
-textarea:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-} */
-
-/* Dropdown (Select) Arrow Fix */
-/* select {
+/* CUSTOM SELECT ARROW */
+select {
     appearance: none;
     -webkit-appearance: none;
-    background-image: linear-gradient(45deg, transparent 50%, #6FFFE8 50%),
-                      linear-gradient(135deg, #6FFFE8 50%, transparent 50%),
-                      linear-gradient(to right, #6FFFE8, #6FFFE8);
-    background-position: calc(100% - 18px) calc(50% - 4px),
-                         calc(100% - 13px) calc(50% - 4px),
-                         calc(100% - 28px) 50%;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #6FFFE8 50%),
+        linear-gradient(135deg, #6FFFE8 50%, transparent 50%),
+        linear-gradient(to right, #6FFFE8, #6FFFE8);
+    background-position:
+        calc(100% - 18px) calc(50% - 4px),
+        calc(100% - 13px) calc(50% - 4px),
+        calc(100% - 28px) 50%;
     background-size: 5px 5px, 5px 5px, 1px 20px;
     background-repeat: no-repeat;
-    padding-right: 40px;
-} */
+}
 
+select option {
+    background: #0B132A;
+    color: #e9fefb;
+}
+
+/* FIX DATE/TIME PICKER ICON */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
+/* -------------------------------------------------
+   BUTTONS
+------------------------------------------------- */
+button {
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
 
 button.btn-del {
     background: #dc3545;
@@ -286,7 +192,11 @@ button.btn-del {
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
-    cursor: pointer;
+}
+
+button.btn-del:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 button.btn-primary,
@@ -297,7 +207,6 @@ button.btn-add {
     border-radius: 6px;
     border: none;
     padding: 10px 20px;
-    transition: all 0.25s ease;
 }
 
 button.btn-primary:hover,
@@ -306,33 +215,9 @@ button.btn-add:hover {
     transform: translateY(-2px);
 }
 
-
-button.btn-del:hover {
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-
-
 /* -------------------------------------------------
    TABLES
 ------------------------------------------------- */
-/* table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th,
-td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #dee2e6;
-}
-
-th {
-    background-color: #e9ecef;
-} */
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -358,14 +243,14 @@ td {
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-
-
-/* STYLE FOR ALERT SYSTEMS */
+/* -------------------------------------------------
+   ALERT SYSTEM
+------------------------------------------------- */
 .alert-box {
     position: fixed;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%) translateY(-20px); 
+    transform: translateX(-50%) translateY(-20px);
     background: #28a745;
     color: white;
     padding: 12px 20px;
@@ -379,56 +264,24 @@ td {
 
 .alert-box.show {
     opacity: 1;
-    transform: translateX(-50%) translateY(0);  
+    transform: translateX(-50%) translateY(0);
 }
 
-
-
-/* RESPONSIVE — Mobile */
-
-@media (max-width: 882px) {
-
-    /* show mobile header */
-    .mobile-header {
-        display: flex;
-        position: sticky;
-        top: 0;
-        z-index: 900;
-        padding: 10px 16px;
-        background: #0B132A;
-        border-bottom: 1px solid #e9ecef;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
-    }
-
-    /* ensure toggle button becomes visible on mobile (appearance still controlled in sidebar.css) */
-    .toggle-btn {
-        display: block;
-    }
-    .card, .box {  
-    margin-top: 20px;
-    }
-}
-
-/* STYLES FOR MODAL */
+/* -------------------------------------------------
+   MODAL
+------------------------------------------------- */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
     justify-content: center;
     align-items: center;
 }
 
 .modal-content {
     background-color: #0B132A;
-    margin: auto;
     padding: 25px;
     border: 1px solid #888;
     width: 90%;
@@ -439,10 +292,8 @@ td {
     animation: fadeIn 0.3s;
 }
 
-/* Close Button (X) */
 .close-modal {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     position: absolute;
@@ -451,46 +302,35 @@ td {
     cursor: pointer;
 }
 
-.close-modal:hover,
-.close-modal:focus {
+.close-modal:hover {
     color: black;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(-20px);}
-    to {opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.main-content {
-    position: relative;
-}
+/* -------------------------------------------------
+   RESPONSIVE — MOBILE
+------------------------------------------------- */
+@media (max-width: 762px) {
+    .mobile-header {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        padding: 10px 16px;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+    }
 
-.main-content::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(111,255,232,0.08), transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(111,255,232,0.06), transparent 65%);
-    pointer-events: none;
-    z-index: 0;
-}
+    .card, .box {
+        margin-top: 20px;
+    }
 
-.card, .box {
-    position: relative;
-    z-index: 1;
+    .schedule-grid-3col {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
 }
-
-.schedule-grid-3col {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    width: 100%;
-}
-
-/* Button spans entire width */
-.schedule-grid-3col .full-row {
-    grid-column: 1 / -1;
-}
-
