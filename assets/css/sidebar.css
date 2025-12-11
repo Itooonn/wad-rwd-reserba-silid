@@ -1,11 +1,6 @@
 /* -------------------------------------------------
-   SIDEBAR (standalone)
+   SIDEBAR STYLES
 ------------------------------------------------- */
-
-/* :root {
-    --oxford-blue: #0B132A;
-    --fluorescent-cyan: #6FFFE8;
-} */
 
 .sidebar {
     width: 260px;
@@ -109,7 +104,7 @@
 }
 
 /* RESPONSIVE — Mobile */
-@media (max-width: 882px) {
+@media (max-width: 762px) {
     .toggle-btn { display: block; }
 
     .sidebar {
